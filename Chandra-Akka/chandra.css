@@ -1,0 +1,701 @@
+:root {
+  --bg: #1a0b2e;
+  --bg-2: #2d1b4e;
+  --gold: #ffd60a;
+  --hot: #ff3d81;
+  --cyan: #00f5d4;
+  --text: #fff5e1;
+  --muted: #c9b8e8;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 214, 10, 0.25);
+  --font-display: "Bungee", system-ui, sans-serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255, 61, 129, 0.25), transparent),
+    radial-gradient(ellipse 700px 500px at 90% 20%, rgba(0, 245, 212, 0.12), transparent),
+    var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---------- Rainbow ambient wash ---------- */
+/* A slow-cycling ROYGBIV gradient sitting BEHIND the existing dark theme at low
+   opacity. Full-saturation rainbow bars would wreck text contrast and kill the
+   "mysterious" tone you asked for in the same breath — this keeps the spectrum
+   present as mood lighting instead of a solid backdrop. */
+.rainbow-wash {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.16;
+  mix-blend-mode: screen;
+  background: linear-gradient(
+    120deg,
+    #ff003c, #ff8c00, #ffee00, #23d900, #0090ff, #4b00ff, #8f00ff, #ff003c
+  );
+  background-size: 400% 400%;
+  animation: rainbow-drift 22s ease infinite;
+  pointer-events: none;
+}
+
+@keyframes rainbow-drift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body.locked { overflow: hidden; height: 100vh; }
+
+img { max-width: 100%; cursor: pointer; display: block; }
+
+/* ---------- Spotlight intro overlay ---------- */
+.spotlight-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 45%, #3a2159 0%, #120820 70%);
+  cursor: pointer;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.spotlight-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.spotlight-label {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--cyan);
+}
+
+.spotlight-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 3.4rem);
+  color: var(--gold);
+  animation: flicker-in 1.4s ease;
+  text-shadow: 0 0 30px rgba(255, 214, 10, 0.4);
+}
+
+.spotlight-name span { color: var(--hot); }
+
+.spotlight-hint {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 10px;
+  animation: pulse-hint 1.8s ease-in-out infinite;
+}
+
+@keyframes flicker-in {
+  0% { opacity: 0; letter-spacing: 1em; }
+  60% { opacity: 1; }
+  100% { opacity: 1; letter-spacing: normal; }
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ---------- Confetti ---------- */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3000;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 16px;
+  opacity: 0.9;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0.2; }
+}
+
+/* ---------- Hero ---------- */
+.stage-hero {
+  text-align: center;
+  padding: 70px 20px 60px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--cyan);
+  margin-bottom: 14px;
+}
+
+.show-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 9vw, 5.2rem);
+  line-height: 1;
+  background: linear-gradient(135deg, var(--gold), var(--hot) 60%, var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 16px;
+}
+
+.show-sub {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 480px;
+  margin: 0 auto 34px;
+  line-height: 1.6;
+}
+
+.hero-photo-frame {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 22px;
+}
+
+.hero-photo {
+  width: min(360px, 70vw);
+  border-radius: 20px;
+  border: 4px solid var(--gold);
+  box-shadow: 0 0 0 8px rgba(255, 214, 10, 0.08), 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.hero-tag {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  background: var(--hot);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(255, 61, 129, 0.4);
+}
+
+.hero-caption {
+  color: var(--muted);
+  max-width: 460px;
+  margin: 26px auto 30px;
+  line-height: 1.6;
+}
+
+.hero-caption strong { color: var(--gold); }
+
+.primary-btn, .secondary-btn, .goback, .reveal-btn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--hot), #ff8a3d);
+  color: white;
+  box-shadow: 0 10px 30px rgba(255, 61, 129, 0.35);
+}
+
+.primary-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 36px rgba(255, 61, 129, 0.5); }
+
+/* ---------- Layout ---------- */
+.page-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* ---------- Scoreboard ---------- */
+.scoreboard-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 28px;
+  margin-bottom: 44px;
+  backdrop-filter: blur(10px);
+}
+
+.scoreboard-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.scoreboard-head p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+.meter-track {
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.meter-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), var(--hot), var(--gold));
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scoreboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  text-align: center;
+}
+
+.scoreboard-stats div {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 14px 8px;
+}
+
+.scoreboard-stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--gold);
+}
+
+.scoreboard-stats span {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Award cards ---------- */
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.award-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.award-card:hover { transform: translateY(-4px); border-color: var(--hot); }
+
+.award-card.wide { grid-column: 1 / -1; flex-direction: row; }
+
+.award-card.wide .award-photo { width: 40%; }
+.award-card.wide .award-body { width: 60%; }
+
+.award-photo { aspect-ratio: 3/4; overflow: hidden; }
+.award-card.wide .award-photo { aspect-ratio: auto; }
+
+.award-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.award-card.wide .award-photo img { object-position: center 20%; }
+
+.award-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+
+.award-number {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.award-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: var(--gold);
+}
+
+.award-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+
+.reveal-btn {
+  align-self: flex-start;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-size: 0.85rem;
+  padding: 10px 18px;
+}
+
+.reveal-btn:hover { background: var(--cyan); color: var(--bg); }
+
+.award-verdict {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  color: var(--hot);
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+}
+
+.award-card.opened .award-verdict {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 6px;
+}
+
+.award-card.opened .reveal-btn { display: none; }
+
+/* ---------- Finale intro ---------- */
+.finale-intro {
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px 20px;
+}
+
+.finale-intro h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--hot);
+  margin: 10px 0 26px;
+}
+
+.finale-btn { background: linear-gradient(135deg, var(--gold), var(--hot)); color: var(--bg); }
+
+/* ---------- Finale modal ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(10, 5, 20, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 1500;
+}
+
+.overlay.active { display: flex; }
+
+.modal {
+  width: min(560px, 100%);
+  background: var(--bg-2);
+  border: 2px solid var(--gold);
+  border-radius: 26px;
+  padding: 28px;
+  animation: pop-up 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes pop-up {
+  from { transform: translateY(24px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.goback {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  margin-left: auto;
+  margin-bottom: 14px;
+  display: block;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+}
+
+.modal-content { display: grid; gap: 16px; justify-items: center; text-align: center; }
+
+.finale-badge {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
+.finale-photo {
+  width: min(300px, 100%);
+  border-radius: 20px;
+  border: 3px solid var(--hot);
+}
+
+.modal-text h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--hot);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.modal-text p { color: var(--muted); line-height: 1.6; font-size: 0.95rem; }
+
+.final-score-display {
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.final-score-display span { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.final-score-display strong { font-family: var(--font-display); font-size: 1.8rem; color: var(--gold); }
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  margin-top: 6px;
+}
+
+.secondary-btn:hover { background: var(--cyan); color: var(--bg); }
+
+/* ---------- Footer ---------- */
+.show-footer {
+  text-align: center;
+  padding: 30px 20px 50px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .awards-grid { grid-template-columns: 1fr; }
+  .award-card.wide { flex-direction: column; }
+  .award-card.wide .award-photo,
+  .award-card.wide .award-body { width: 100%; }
+  .award-card.wide .award-photo { aspect-ratio: 4/3; }
+  .scoreboard-stats { grid-template-columns: 1fr; }
+}
+
+/* ---------- Cinematic sequential reveal ---------- */
+/* Cards start fully hidden (display:none-equivalent via visibility+opacity so
+   layout doesn't jump), then get unveiled one-by-one with a blur-to-focus pull,
+   like a montage cut rather than a page just "loading in". */
+.award-card.reveal-pending {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(40px) scale(0.96);
+  filter: blur(14px);
+  transition: none;
+}
+
+.award-card.reveal-in {
+  visibility: visible;
+  animation: cinematic-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cinematic-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+    filter: blur(14px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* A brief "flash frame" behind each card as it lands, like a camera shutter cutting to the next shot */
+.reveal-flash {
+  position: fixed;
+  inset: 0;
+  background: var(--gold);
+  opacity: 0;
+  z-index: 2200;
+  pointer-events: none;
+}
+
+.reveal-flash.fire {
+  animation: shutter-flash 0.25s ease-out;
+}
+
+@keyframes shutter-flash {
+  0% { opacity: 0; }
+  15% { opacity: 0.55; }
+  100% { opacity: 0; }
+}
+/* ---------- Manga-panel photo reveal (matches reference: tilted slam-in,
+   motion blur, white flash impact frame, snap to straight — NOT a 3D flip) ---------- */
+.award-photo { position: relative; }
+
+.photo-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 8px),
+    var(--bg-2);
+  border: 2px dashed var(--card-border);
+}
+
+.photo-cover span {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.award-photo img {
+  position: relative;
+  z-index: 1;
+  transform-origin: center;
+}
+
+.award-card.opened .photo-cover {
+  animation: cover-flash-out 0.28s ease-out forwards;
+}
+
+@keyframes cover-flash-out {
+  0%   { opacity: 1; background: var(--card-border); }
+  25%  { opacity: 1; background: #fff; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.award-card.opened .award-photo img {
+  animation: panel-slam-reveal 0.5s cubic-bezier(0.22, 0.9, 0.3, 1.35) 0.05s both;
+}
+
+@keyframes panel-slam-reveal {
+  0%   { transform: rotate(-16deg) scale(1.24); filter: blur(10px) brightness(2.1) contrast(1.2); }
+  45%  { transform: rotate(7deg) scale(1.06); filter: blur(3px) brightness(1.35); }
+  75%  { transform: rotate(-3deg) scale(1.02); filter: blur(0) brightness(1.05); }
+  100% { transform: rotate(0deg) scale(1); filter: none; }
+}
+
+.sound-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 2500;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: rgba(26, 11, 46, 0.75);
+  color: var(--gold);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sound-toggle:hover { transform: scale(1.08); box-shadow: 0 0 20px rgba(255, 214, 10, 0.4); }
+.sound-toggle.muted { color: var(--muted); border-color: var(--muted); }
+
+/* ---------- Drumroll suspense state ---------- */
+.award-card.suspense .reveal-btn {
+  pointer-events: none;
+  opacity: 0.6;
+  animation: shake-anticipation 0.12s linear infinite;
+}
+
+@keyframes shake-anticipation {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px) rotate(-1deg); }
+  75% { transform: translateX(2px) rotate(1deg); }
+}
+
+.award-card.suspense .award-photo img {
+  filter: brightness(1.15) saturate(1.2);
+  transition: filter 0.15s ease;
+}
+
+/* ---------- Rank-up flash ---------- */
+.rank-flash {
+  animation: rank-pop 0.6s ease;
+}
+
+@keyframes rank-pop {
+  0% { transform: scale(1); text-shadow: none; }
+  40% { transform: scale(1.3); text-shadow: 0 0 18px var(--gold); }
+  100% { transform: scale(1); text-shadow: none; }
+}
+
+/* ---------- Screen shake for big reveals ---------- */
+.screen-shake {
+  animation: screen-shake-kf 0.4s ease;
+}
+
+@keyframes screen-shake-kf {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-6px, 3px); }
+  40% { transform: translate(6px, -3px); }
+  60% { transform: translate(-4px, 2px); }
+  80% { transform: translate(4px, -2px); }
+}
+
+/* ---------- Mystery award ---------- */
+.award-card.mystery {
+  position: relative;
+  opacity: 0.5;
+  filter: grayscale(1);
+  pointer-events: none;
+  transition: opacity 0.6s ease, filter 0.6s ease;
+}
+
+.award-card.mystery.unlocked {
+  opacity: 1;
+  filter: none;
+  pointer-events: auto;
+  animation: mystery-unlock 0.8s ease;
+}
+
+@keyframes mystery-unlock {
+  0% { transform: scale(0.9) rotate(-2deg); }
+  50% { transform: scale(1.04) rotate(1deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+.mystery-lock-note {
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.mystery-lock-note strong { color: var(--gold); display: block; margin-bottom: 6px; font-family: var(--font-display); font-size: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

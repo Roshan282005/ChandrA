@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Extra Awards — A Roast Ceremony</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="chandra.css">
+</head>
+<body>
+
+  <div class="rainbow-wash" id="rainbowWash"></div>
+  <div class="reveal-flash" id="revealFlash"></div>
+
+  <button id="soundToggle" class="sound-toggle" aria-label="Toggle sound" title="Toggle sound">🔊</button>
+
+  <div class="spotlight-overlay" id="spotlightOverlay">
+    <p class="spotlight-label">The Big Role Of VADA CHENNAI</p>
+    <h1 class="spotlight-name">THE HIGHNESS OF <span>C H A N D R A </span> AKKA</h1>
+    <p class="spotlight-hint">I Look Like A Whore To YOU?</p>
+    <p class="spotlight-hint">Yanga Venalum Thoduuu...... Mmmm...mmmmm</p>
+  </div>
+
+  <div class="confetti-layer" id="confettiLayer"></div>
+
+  <header class="stage-hero">
+    <p class="eyebrow"> TH
+        E 1ST COUPLE 🏆</p>
+    <h1 class="show-title">PAKKA PORUTHAM</h1>
+    <p class="show-sub">Honoring one (1) individual who has never once entered a room quietly.</p>
+
+    <div class="hero-photo-frame">
+      <img src="couplePotta.jpg" alt="Grand entrance photo" class="hero-photo">
+      <span class="hero-tag">EXHIBIT A: "casual dinner outfit"</span>
+    </div>
+
+    <p class="hero-caption">Nominated tonight for: <strong>Best Use of a Living Room as a Runway.</strong> The suit says "I'm just here for the food." The pose says otherwise.</p>
+
+    <button id="startShowBtn" class="primary-btn">🎬 Chandra Leaked Content</button>
+  </header>
+
+  <main class="page-shell">
+
+    <section class="scoreboard-card">
+      <div class="scoreboard-head">
+        <h2> Live Drama Meter</h2>
+        <p>Every award you open adds points. Let's see how extra this really gets.</p>
+      </div>
+      <div class="meter-track">
+        <div class="meter-fill" id="meterFill"></div>
+      </div>
+      <div class="scoreboard-stats">
+        <div><strong id="scoreValue">0</strong><span>Drama Points</span></div>
+        <div><strong id="awardsOpened">0</strong><span>/ 6 Awards Opened</span></div>
+        <div><strong id="rankLabel">Rookie</strong><span>Current Rank</span></div>
+      </div>
+    </section>
+
+    <section class="awards-grid" id="awardsGrid">
+
+      <article class="award-card reveal-pending" data-points="15" data-sound="ding">
+        <div class="award-photo">
+          <img src="pottaCloseup.jpg" alt="Closeup portrait">
+          <div class="photo-cover"><span>Tap Reveal</span></div>
+        </div>
+        <div class="award-body">
+          <span class="award-number">Category 01</span>
+          <h3>Best Smoulder in a Room With No Camera Crew</h3>
+          <p class="award-desc">That is not a photoshoot. That is a Tuesday. The lighting isn't even good and somehow it still looks professionally directed.</p>
+          <button class="reveal-btn">Reveal Verdict 🔒</button>
+          <p class="award-verdict">VERDICT: Confirmed unable to take a bad photo, which is honestly starting to feel unfair to the rest of us.</p>
+        </div>
+      </article>
+
+      <article class="award-card reveal-pending" data-points="20" data-sound="ding">
+        <div class="award-photo">
+          <img src="modernpotta.jpg" alt="Sunglasses indoors">
+          <div class="photo-cover"><span>Tap Reveal</span></div>
+        </div>
+        <div class="award-body">
+          <span class="award-number">Category 02</span>
+          <h3>Lifetime Membership: Sunglasses Indoors Club</h3>
+          <p class="award-desc">The room clearly has normal indoor lighting. The sunglasses remain on regardless. Bold commitment to a bit nobody asked for.</p>
+          <button class="reveal-btn">Reveal Verdict 🔒</button>
+          <p class="award-verdict">VERDICT: We get it. You can see. The rest of us are just standing here squinting in solidarity.</p>
+        </div>
+      </article>
+
+      <article class="award-card reveal-pending" data-points="25" data-sound="ding">
+        <div class="award-photo">
+          <img src="PottaPortrait.jpg" alt="Long hair portrait">
+          <div class="photo-cover"><span>Tap Reveal</span></div>
+        </div>
+        <div class="award-body">
+          <span class="award-number">Category 03</span>
+          <h3>Gold Medal: Hair Flip Olympics</h3>
+          <p class="award-desc">The hair alone requires its own seat at the table and possibly its own oxygen supply. It has main-character energy independent of the rest of the outfit.</p>
+          <button class="reveal-btn">Reveal Verdict 🔒</button>
+          <p class="award-verdict">VERDICT: If the hair filed a solo career application, it would get signed before you did.</p>
+        </div>
+      </article>
+
+      <article class="award-card reveal-pending" data-points="20" data-sound="ding">
+        <div class="award-photo">
+          <img src="pottaSaree.jpg" alt="Formal portrait">
+          <div class="photo-cover"><span>Tap Reveal</span></div>
+        </div>
+        <div class="award-body">
+          <span class="award-number">Category 04</span>
+          <h3>Most Likely to Show Up Overdressed to a WiFi Password Request</h3>
+          <p class="award-desc">Nobody asked for a full look. Nobody asked for jewelry that costs more than the venue. And yet, here we are, gagged.</p>
+          <button class="reveal-btn">Reveal Verdict 🔒</button>
+          <p class="award-verdict">VERDICT: Somewhere, a stylist is taking full credit for what is clearly just a personality trait at this point.</p>
+        </div>
+      </article>
+
+      <article class="award-card wide reveal-pending" data-points="30" data-sound="applause">
+        <div class="award-photo">
+          <img src="couplePotta.jpg" alt="Couple photo">
+          <div class="photo-cover"><span>Tap Reveal</span></div>
+        </div>
+        <div class="award-body">
+          <span class="award-number">Category 05</span>
+          <h3>Best Supporting Role: "Just Standing There Being Photogenic"</h3>
+          <p class="award-desc">Someone else is clearly the guest of honor in this photo. The framing disagrees. The pose disagrees harder. Scene-stealing, uncredited, unbothered.</p>
+          <button class="reveal-btn">Reveal Verdict 🔒</button>
+          <p class="award-verdict">VERDICT: Award goes to whoever taught this man that every photo is a solo album cover.</p>
+        </div>
+      </article>
+
+      <article class="award-card wide mystery reveal-pending" data-points="40" data-sound="mystery">
+        <div class="mystery-lock-note">
+          <strong>🔒 LOCKED</strong>Open all 6 awards above to unlock this one.
+        </div>
+        <div class="award-photo">
+          <img src="pottaSaree.jpg" alt="Mystery award photo">
+          <div class="photo-cover"><span>Tap Reveal</span></div>
+        </div>
+        <div class="award-body">
+          <span class="award-number">Category ??</span>
+          <h3>The "How Is Every Single Photo A Cover Shoot" Special Recognition</h3>
+          <p class="award-desc">This one only unlocks after you've sat through all six other categories — consider it the after-credits scene nobody asked for and everybody stays for.</p>
+          <button class="reveal-btn">Reveal Verdict 🔒</button>
+          <p class="award-verdict">VERDICT: At this point we have to assume there's a stylist, a lighting rig, and possibly a drone following this man at all times.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="finale-intro">
+      <p class="eyebrow">🎺 and now, the moment nobody voted for but everyone saw coming 🎺</p>
+      <h2>THE LIFETIME ACHIEVEMENT AWARD</h2>
+      <button id="finaleBtn" class="primary-btn finale-btn">Open the Envelope</button>
+    </section>
+
+  </main>
+
+  <div id="finaleOverlay" class="overlay" aria-hidden="true">
+    <div class="modal finale-modal" role="dialog" aria-modal="true" aria-label="Grand finale award">
+      <button type="button" class="goback">Go back</button>
+      <div class="modal-content">
+        <span class="finale-badge">🏆 GRAND FINALE 🏆</span>
+        <img class="finale-photo" src="Potta-Hip.jpg" alt="Grand finale photo">
+        <div class="modal-text">
+          <h3>THE "STILL POSING WHEN THE CAMERA'S ALREADY OFF" AWARD</h3>
+          <p>Presented for consistently unmatched dedication to a pose nobody rehearsed and everybody remembers. This isn't confidence. This is a lifestyle choice we're all just living inside of.</p>
+          <div class="final-score-display">
+            <span>Final Drama Score</span>
+            <strong id="finalScoreValue">0</strong>
+          </div>
+        </div>
+        <button id="replayBtn" class="secondary-btn">🔁 Restart the Ceremony</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="show-footer">
+    <p>Made with love, several roasts, and zero regrets. 🎤⬇️</p>
+  </footer>
+
+  <script src="chandra.js"></script>
+</body>
+</html>

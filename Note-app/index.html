@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Montenegrin+Gothic+One&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>NOTE APP</title>
+</head>
+
+<body>
+    <div class="nav">
+        <h1>NOTE APP</h1>
+    </div>
+
+    <div class="big-box">
+        <div class="note-box">
+            <h2>Web Development Notes</h2>
+            <h5>ROSHAN</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laudantium eaque quod reiciendis suscipit
+                recusandae accusamus fugit voluptatum iure voluptatem?</p>
+            <button  onclick="deleteItem(event)">Delete</button>
+        </div>
+    </div>
+
+    <div class="popup-overlay">
+
+    </div>
+    <div class="popup">
+        <h2>Add Note</h2>
+        <form action="">
+            <input type="text" id="note-title" placeholder="Title">
+        <input type="text" id="note-author" placeholder="Author">
+        <textarea id="note-description" placeholder="note-description"></textarea>
+        <button id="add-Note-btn" >Add Note</button>
+        <button id="closePopupbtn"  onclick="closePopUp(event)">X</button>
+        </form>
+    </div>
+
+
+
+    <button id="add-Popup-btn" class="add-button">+</button>
+    <script src="script.js"></script>
+</body>
+
+</html>
